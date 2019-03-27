@@ -1,0 +1,108 @@
+package com.basic_path;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class Frams  extends JFrame implements ActionListener{
+	String ts = "-";
+	String te = "";
+	String string;
+	JButton b1= null;
+	JTextField ji = null;
+	JTextField jj = null;
+	JTextField jp = null;
+	JTextField ja = null;
+	List<String> strings = new ArrayList<String>();
+	public void init() {
+		JFrame gameFrame = new JFrame();
+		gameFrame.setTitle("基本路径测试");
+		JLabel i =new JLabel("输入数据  i :",JLabel.CENTER);
+		 i.setBounds(100, 100, 100, 50);
+		ji =new JTextField();
+		ji.setBounds(200, 100, 200, 50);
+		JLabel j =new JLabel("输入数据  j :",JLabel.CENTER);
+		 j.setBounds(100, 200, 100, 50);
+		jj =new JTextField();
+		jj.setBounds(200, 200, 200, 50);
+		JLabel js =new JLabel("输出结果 :",JLabel.CENTER);
+		 js.setBounds(100, 300, 100, 50);
+		 jp=new JTextField();
+		 jp.setEditable(false);
+	    jp.setBounds(200, 300, 200, 50);
+	    JLabel jq =new JLabel("执行路径 :",JLabel.CENTER);
+	    ja=new JTextField();
+		 jq.setBounds(100, 400, 100, 50);
+		 ja.setEditable(false);
+	    ja.setBounds(200, 400, 200,50);
+	    this.b1 =new JButton("确定");
+	    b1.addActionListener(this);
+	    b1.setBounds(500, 200, 100, 50);
+	    gameFrame.add(ji);
+	    gameFrame.add(jj);
+	    gameFrame.add(jp);
+	    gameFrame.add(b1);
+	    gameFrame.add(ja);
+	    gameFrame.add(i);
+	    gameFrame.add(j);
+	    gameFrame.add(js);
+	    gameFrame.add(jq);
+	    gameFrame.setLayout(null);
+     	gameFrame.setSize(800, 600);
+	    gameFrame.setVisible(true); 
+	}
+	public String[]  sort(int i,int  j) {
+		String s[] = new String[3];
+        int  m,n,k;
+	      m=n=k=0;
+	      while(i<11){
+	    	  i++;
+	    	  strings.add("7");
+	          if (j<5){
+	             m++;
+	             strings.add("8");
+	          }else{
+	        	  strings.add("10");
+	            if(j<8){
+	                n++;
+	                strings.add("11");
+	            }else{
+	            	k++;
+	            	strings.add("13");
+	            }
+	          }strings.add("14");strings.add("5");
+	       }strings.add("15");
+	      s[0] = String.valueOf(m); s[1] =String.valueOf(n) ; s[2] = String.valueOf(k);
+	      return s;
+	  }
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == this.b1) {
+			String name1 = this.ji.getText();
+			String name2 = this.jj.getText();
+			if (name1 == null || name1.length() <= 0 ||name2 == null || name2.length() <= 0) {
+				JOptionPane.showMessageDialog(this,"输入不能为空");
+				return;
+			} 
+			else {
+				int s1 = Integer.parseInt(this.ji.getText());
+				int s2 = Integer.parseInt(this.jj.getText());
+				String s[] = this.sort(s1, s2);
+				jp.setText("m="+ String.valueOf(s[0])
+						+"   n="+  String.valueOf(s[1]) + "   k=" +  String.valueOf(s[2]));
+				for (String string : strings) {
+					ja.setText(string);
+					 te = te+ts+string;
+				}
+				ja.setText("沿路径5"+te +"执行");
+			}
+	}
+}
+}
