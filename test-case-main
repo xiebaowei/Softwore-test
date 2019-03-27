@@ -1,0 +1,15 @@
+package com.basic_path;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+public class Path{
+	public  static void main (String arg[]) {
+		Frams s = new Frams();
+		s.init();
+	 }
+
+}
